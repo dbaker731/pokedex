@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="pokeApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Pokemon!</title>
+  </head>
+  <body ng-controller="pokeCtrl">
+
+    <div>
+      <p>Search by Name:</p>
+      <input ng-model="pokemonName" type="text" name="" value="">
+      <button ng-click="getByName()"type="button" name="button">Search</button>
+    </div>
+
+    <div>
+      <p>Search by ID:</p>
+      <input ng-model="pokemonId" type="text" name="" value="">
+      <button ng-click="getById()" type="button" name="button">Test</button>
+    </div>
+
+
+    <p>{{ specificPokemon.name }}'s base stats are:</p>
+    <img ng-src="{{ specificPokemon.sprites.front_default }}" alt="">
+    <ul ng-repeat="pokeStat in specificPokemon.stats">
+
+      <li>{{ pokeStat.stat.name }}: {{ pokeStat.base_stat }}</li>
+    </ul>
+
+
+
+    <div ng-repeat="poke in pokemon">
+      <button ng-click="getSpecificPokemon( poke.url )" type="button" name="button">{{ poke.name }}</button>
+    </div>
+    <br>
+
+    <button ng-click="getNextPage()" type="button" name="button">Next Page</button>
+
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+     <script src="./js/app.js" charset="utf-8"></script>
+     <script src="./js/pokeCtrl.js" charset="utf-8"></script>
+     <script src="./js/pokeSvc.js" charset="utf-8"></script>
+     <script src="./js/pokemon.js" charset="utf-8"></script>
+  </body>
+</html>
