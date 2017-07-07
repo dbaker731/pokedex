@@ -305,11 +305,306 @@ angular.module( 'pokeApp' ).service( 'pokemon', function() {
       name: 'golem',
       id: 76,
     },
-
-
-
-
-
+    {
+      name: 'ponyta',
+      id: 77,
+    },
+    {
+      name: 'rapidash',
+      id: 78,
+    },
+    {
+      name: 'slowpoke',
+      id: 79,
+    },
+    {
+      name: 'slowbro',
+      id: 80,
+    },
+    {
+      name: 'magnemite',
+      id: 81,
+    },
+    {
+      name: 'magneton',
+      id: 82,
+    },
+    {
+      name: 'farfetch\'\d',
+      id: 83,
+    },
+    {
+      name: 'doduo',
+      id: 84,
+    },
+    {
+      name: 'dodrio',
+      id: 85,
+    },
+    {
+      name: 'seel',
+      id: 86,
+    },
+    {
+      name: 'dewgong',
+      id: 87,
+    },
+    {
+      name: 'grimer',
+      id: 88,
+    },
+    {
+      name: 'muk',
+      id: 89,
+    },
+    {
+      name: 'shellder',
+      id: 90,
+    },
+    {
+      name: 'cloyster',
+      id: 91,
+    },
+    {
+      name: 'gastly',
+      id: 92,
+    },
+    {
+      name: 'haunter',
+      id: 93,
+    },
+    {
+      name: 'gengar',
+      id: 94,
+    },
+    {
+      name: 'onix',
+      id: 95,
+    },
+    {
+      name: 'drowzee',
+      id: 96,
+    },
+    {
+      name: 'hypno',
+      id: 97,
+    },
+    {
+      name: 'krabby',
+      id: 98,
+    },
+    {
+      name: 'kingler',
+      id: 99,
+    },
+    {
+      name: 'voltorb',
+      id: 100,
+    },
+    {
+      name: 'electrode',
+      id: 101,
+    },
+    {
+      name: 'exeggcute',
+      id: 102,
+    },
+    {
+      name: 'exeggutor',
+      id: 103,
+    },
+    {
+      name: 'cubone',
+      id: 104,
+    },
+    {
+      name: 'marowak',
+      id: 105,
+    },
+    {
+      name: 'hitmonlee',
+      id: 106,
+    },
+    {
+      name: 'hitmonchan',
+      id: 107,
+    },
+    {
+      name: 'likitung',
+      id: 108,
+    },
+    {
+      name: 'koffing',
+      id: 109,
+    },
+    {
+      name: 'weezing',
+      id: 110,
+    },
+    {
+      name: 'rhyhorn',
+      id: 111,
+    },
+    {
+      name: 'rhydon',
+      id: 112,
+    },
+    {
+      name: 'chansey',
+      id: 113,
+    },
+    {
+      name: 'tangela',
+      id: 114,
+    },
+    {
+      name: 'kangaskhan	',
+      id: 115,
+    },
+    {
+      name: 'horsea',
+      id: 116,
+    },
+    {
+      name: 'seadra',
+      id: 117,
+    },
+    {
+      name: 'goldeen',
+      id: 118,
+    },
+    {
+      name: 'seaking',
+      id: 119,
+    },
+    {
+      name: 'staryu',
+      id: 120,
+    },
+    {
+      name: 'starmie',
+      id: 121,
+    },
+    {
+      name: 'mr. mime',
+      id: 122,
+    },
+    {
+      name: 'scyther',
+      id: 123,
+    },
+    {
+      name: 'jynx',
+      id: 124,
+    },
+    {
+      name: 'electabuzz',
+      id: 125,
+    },
+    {
+      name: 'magmar',
+      id: 126,
+    },
+    {
+      name: 'pinsir',
+      id: 127,
+    },
+    {
+      name: 'tauros',
+      id: 128,
+    },
+    {
+      name: 'magikarp',
+      id: 129,
+    },
+    {
+      name: 'gyrados',
+      id: 130,
+    },
+    {
+      name: 'lapras',
+      id: 131,
+    },
+    {
+      name: 'ditto',
+      id: 132,
+    },
+    {
+      name: 'eevee',
+      id: 133,
+    },
+    {
+      name: 'vaporeon',
+      id: 134,
+    },
+    {
+      name: 'jolteon',
+      id: 135,
+    },
+    {
+      name: 'flareon',
+      id: 136,
+    },
+    {
+      name: 'porygon',
+      id: 137,
+    },
+    {
+      name: 'omanyte',
+      id: 138,
+    },
+    {
+      name: 'omastar',
+      id: 139,
+    },
+    {
+      name: 'kabuto',
+      id: 140,
+    },
+    {
+      name: 'kabutops',
+      id: 141,
+    },
+    {
+      name: 'aerodactyl',
+      id: 142,
+    },
+    {
+      name: 'snorlax',
+      id: 143,
+    },
+    {
+      name: 'articuno',
+      id: 144,
+    },
+    {
+      name: 'zapdos',
+      id: 145,
+    },
+    {
+      name: 'moltres',
+      id: 146,
+    },
+    {
+      name: 'dratini',
+      id: 147,
+    },
+    {
+      name: 'dragonair',
+      id: 148,
+    },
+    {
+      name: 'dragonite',
+      id: 149,
+    },
+    {
+      name: 'mewtwo',
+      id: 150,
+    },
+    {
+      name: 'mew',
+      id: 151,
+    }
   ];
 
   this.returnPokemon = function() {

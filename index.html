@@ -26,6 +26,11 @@
       <li>{{ pokeStat.stat.name }}: {{ pokeStat.base_stat }}</li>
     </ul>
 
+    <p>{{ specificPokemon.name }} can be found at:</p>
+    <ul ng-repeat="location in pokeLocation">
+      <li>Location: {{ location.area }} | Version: {{ location.version }}</li>
+    </ul>
+
 
 
     <div ng-repeat="poke in pokemon">

@@ -4,6 +4,7 @@ angular.module( 'pokeApp' ).controller( 'pokeCtrl', function( $scope, pokeSvc, p
   $scope.pokemon = [];
   $scope.specificPokemon = {};
   $scope.searchPokemon = pokemon.returnPokemon();
+  $scope.pokeLocation = [];
 
   $scope.getPokemon = function() {
     pokeSvc.getPokemon()
@@ -18,6 +19,10 @@ angular.module( 'pokeApp' ).controller( 'pokeCtrl', function( $scope, pokeSvc, p
     pokeSvc.getSpecific( url )
       .then( function( specificPokemon ) {
         $scope.specificPokemon = specificPokemon;
+        pokeSvc.findLocation( specificPokemon.location_area_encounters )
+          .then( function( pokemonLocation ) {
+            $scope.pokeLocation = pokemonLocation;
+          } );
       } );
   };
 
@@ -25,6 +30,10 @@ angular.module( 'pokeApp' ).controller( 'pokeCtrl', function( $scope, pokeSvc, p
     pokeSvc.getSpecificId( $scope.pokemonId )
       .then( function( specificPokemon ) {
         $scope.specificPokemon = specificPokemon;
+        pokeSvc.findLocation( specificPokemon.location_area_encounters )
+          .then( function( pokemonLocation ) {
+            $scope.pokeLocation = pokemonLocation;
+          } );
       } );
   };
 
@@ -32,6 +41,10 @@ angular.module( 'pokeApp' ).controller( 'pokeCtrl', function( $scope, pokeSvc, p
     pokeSvc.searchByName( $scope.searchPokemon, $scope.pokemonName )
     .then( function( specificPokemon ) {
       $scope.specificPokemon = specificPokemon;
+      pokeSvc.findLocation( specificPokemon.location_area_encounters )
+        .then( function( pokemonLocation ) {
+          $scope.pokeLocation = pokemonLocation;
+        } );
     } );
   };
 
