@@ -19,6 +19,7 @@ angular.module( 'pokeApp' ).controller( 'pokeCtrl', function( $scope, pokeSvc, p
     pokeSvc.getSpecific( url )
       .then( function( specificPokemon ) {
         $scope.specificPokemon = specificPokemon;
+        $scope.pokemonName = specificPokemon.name;
         pokeSvc.findLocation( specificPokemon.location_area_encounters )
           .then( function( pokemonLocation ) {
             $scope.pokeLocation = pokemonLocation;
@@ -30,6 +31,7 @@ angular.module( 'pokeApp' ).controller( 'pokeCtrl', function( $scope, pokeSvc, p
     pokeSvc.getSpecificId( $scope.pokemonId )
       .then( function( specificPokemon ) {
         $scope.specificPokemon = specificPokemon;
+        $scope.pokemonName = specificPokemon.name;
         pokeSvc.findLocation( specificPokemon.location_area_encounters )
           .then( function( pokemonLocation ) {
             $scope.pokeLocation = pokemonLocation;
