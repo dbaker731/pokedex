@@ -4,13 +4,22 @@ angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
   var nextPageUrl = null;
 
 
-  this.getPokemon = function() {
 
-  return $http.get( baseUrl + 'pokemon' )
-    .then( function( pokemon ){
-      nextPageUrl = pokemon.data.next;
-      return pokemon.data.results;
-    } );
+
+  this.getPokemon = function( pokemons ) {
+    return $http.get( baseUrl + 'pokemon/?limit=21' )
+      .then( function( pokemon ){
+        nextPageUrl = pokemon.data.next;
+        pokemon = pokemon.data.results;
+        for (var i = 0; i < pokemon.length; i++) {
+          for (var j = 0; j < pokemons.length; j++) {
+            if ( pokemons[j].name === pokemon[i].name ) {
+                pokemon[i].imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + pokemons[j].id + '.png';
+            }
+          }
+        }
+        return pokemon;
+      } );
   };
 
 
@@ -68,11 +77,19 @@ angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
       } );
   };
 
-  this.getNextPage = function(){
+  this.getNextPage = function( pokemons ){
     return $http.get( nextPageUrl )
     .then( function( pokemon ){
       nextPageUrl = pokemon.data.next;
-      return pokemon.data.results;
+      pokemon = pokemon.data.results;
+      for (var i = 0; i < pokemon.length; i++) {
+        for (var j = 0; j < pokemons.length; j++) {
+          if ( pokemons[j].name === pokemon[i].name ) {
+              pokemon[i].imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + pokemons[j].id + '.png';
+          }
+        }
+      }
+      return pokemon;
     });
   };
 

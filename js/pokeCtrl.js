@@ -7,7 +7,7 @@ angular.module( 'pokeApp' ).controller( 'pokeCtrl', function( $scope, pokeSvc, p
   $scope.pokeLocation = [];
 
   $scope.getPokemon = function() {
-    pokeSvc.getPokemon()
+    pokeSvc.getPokemon( $scope.searchPokemon )
       .then( function( pokemon ) {
         $scope.pokemon = pokemon;
       } );
@@ -51,7 +51,7 @@ angular.module( 'pokeApp' ).controller( 'pokeCtrl', function( $scope, pokeSvc, p
   };
 
   $scope.getNextPage = function(){
-    pokeSvc.getNextPage()
+    pokeSvc.getNextPage( $scope.searchPokemon )
       .then( function( pokemon ){
         $scope.pokemon = pokemon;
       } );
