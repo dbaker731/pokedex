@@ -11,9 +11,7 @@ angular.module( 'pokeApp' ).controller( 'pokeCtrl', function( $scope, pokeSvc, p
       .then( function( pokemon ) {
         $scope.pokemon = pokemon;
       } );
-  };
-
-  $scope.getPokemon();
+  }();
 
   $scope.getSpecificPokemon = function( url ) {
     pokeSvc.getSpecific( url )
@@ -50,8 +48,14 @@ angular.module( 'pokeApp' ).controller( 'pokeCtrl', function( $scope, pokeSvc, p
     } );
   };
 
-  $scope.getNextPage = function(){
+  $scope.nextPage = function(){
     pokeSvc.getNextPage( $scope.searchPokemon )
+      .then( function( pokemon ){
+        $scope.pokemon = pokemon;
+      } );
+  };
+  $scope.previousPage = function(){
+    pokeSvc.getPreviousPage( $scope.searchPokemon )
       .then( function( pokemon ){
         $scope.pokemon = pokemon;
       } );

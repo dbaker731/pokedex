@@ -330,7 +330,7 @@ angular.module( 'pokeApp' ).service( 'pokemon', function() {
       id: 82,
     },
     {
-      name: 'farfetch\'\d',
+      name: 'farfetchd',
       id: 83,
     },
     {
