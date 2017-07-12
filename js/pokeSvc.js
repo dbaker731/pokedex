@@ -1,7 +1,7 @@
 angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
 
 // initializing variables
-  var baseUrl = 'http://pokeapi.co/api/v2/';
+  var baseUrl = 'https://pokeapi.co/api/v2/';
   var nextPageUrl = null;
   var previousPageUrl = null;
 
@@ -65,7 +65,7 @@ angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
   };
 
   this.findLocation = function ( locationUrl ) {
-    return $http.get( 'http://pokeapi.co' + locationUrl )
+    return $http.get( 'https://pokeapi.co' + locationUrl )
       .then( function( pokemonLocation ){
         var locations = [];
         var encounterArea = pokemonLocation.data;
