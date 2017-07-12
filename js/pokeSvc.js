@@ -1,11 +1,22 @@
 angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
 
+// initializing variables
   var baseUrl = 'http://pokeapi.co/api/v2/';
   var nextPageUrl = null;
   var previousPageUrl = null;
 
+//initializing functions that will be used for the service
+  String.prototype.capitalize = function() {
+      return this.charAt(0).toUpperCase() + this.slice(1);
+  };
 
+  function padDigits(number, digits) {
+    return Array(Math.max(digits - String(number).length + 1, 0)).join(0) + number;
+  }
 
+//starting the service
+
+//this function returns 21 pokemonm per page
   this.getPokemon = function( pokemons ) {
     return $http.get( baseUrl + 'pokemon/?limit=21' )
       .then( function( pokemon ){
@@ -15,9 +26,12 @@ angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
         for (var i = 0; i < pokemon.length; i++) {
           for (var j = 0; j < pokemons.length; j++) {
             if ( pokemons[j].name === pokemon[i].name ) {
+                var number = padDigits( pokemons[j].id, 3 );
+                pokemon[i].number = number;
                 pokemon[i].imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + pokemons[j].id + '.png';
             }
           }
+          pokemon[i].name = pokemon[i].name.capitalize();
         }
         return pokemon;
       } );
@@ -87,9 +101,12 @@ angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
       for (var i = 0; i < pokemon.length; i++) {
         for (var j = 0; j < pokemons.length; j++) {
           if ( pokemons[j].name === pokemon[i].name ) {
-              pokemon[i].imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + pokemons[j].id + '.png';
+            var number = padDigits( pokemons[j].id, 3 );
+            pokemon[i].number = number;
+            pokemon[i].imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + pokemons[j].id + '.png';
           }
         }
+        pokemon[i].name = pokemon[i].name.capitalize();
       }
       return pokemon;
     });
@@ -105,16 +122,18 @@ angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
         for (var i = 0; i < pokemon.length; i++) {
           for (var j = 0; j < pokemons.length; j++) {
             if ( pokemons[j].name === pokemon[i].name ) {
-                pokemon[i].imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + pokemons[j].id + '.png';
+              var number = padDigits( pokemons[j].id, 3 );
+              pokemon[i].number = number;
+              pokemon[i].imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + pokemons[j].id + '.png';
             }
           }
+          pokemon[i].name = pokemon[i].name.capitalize();
         }
         return pokemon;
       });
     } else {
       alert( 'CAN\'\T GO BACK NERD' );
     }
-
   };
 
 

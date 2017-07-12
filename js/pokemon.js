@@ -430,7 +430,7 @@ angular.module( 'pokeApp' ).service( 'pokemon', function() {
       id: 107,
     },
     {
-      name: 'likitung',
+      name: 'lickitung',
       id: 108,
     },
     {
@@ -518,7 +518,7 @@ angular.module( 'pokeApp' ).service( 'pokemon', function() {
       id: 129,
     },
     {
-      name: 'gyrados',
+      name: 'gyarados',
       id: 130,
     },
     {
