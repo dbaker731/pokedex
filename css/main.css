@@ -34,3 +34,28 @@
   font-weight: 600;
   font-size: 16px;
 }
+
+
+.pokedex-container {
+  padding: 0;
+}
+
+.pokedex__gameboy--shell {
+  padding: 30px 20px;
+  background-color: #f00;
+  height: 100%;
+}
+
+.pokedex__gameboy--outer-screen {
+ padding: 50px 75px;
+ background-color: #000;
+ border-radius: 10px;
+}
+
+.pokedex__info {
+  padding: 50px;
+  background-color: #fff;
+  height: 500px;
+  overflow: scroll;
+  width: 100%;
+}
