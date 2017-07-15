@@ -6,6 +6,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/gameboy.css">
   </head>
   <body ng-controller="pokeCtrl">
 
@@ -40,7 +41,7 @@
       </div>
 
       <div class="pokedex-container col-md-9">
-        <div class="pokedex__gameboy--shell">
+        <!-- <div class="pokedex__gameboy--shell">
           <div class="pokedex__gameboy--outer-screen">
             <div class="pokedex__info">
               <p>{{ specificPokemon.name }}'s base stats are:</p>
@@ -55,8 +56,162 @@
               </ul>
             </div>
           </div>
+        </div> -->
+        <div class="gameboy" id="GameBoy">
+
+          <div class="screen-area">
+
+            <div class="power">
+              <div class="indicator">
+                <div class="led"></div>
+                <span class="arc" style="z-index:2"></span>
+                <span class="arc" style="z-index:1"></span>
+                <span class="arc" style="z-index:0"></span>
+              </div>
+              POWER
+            </div>
+
+            <div class="display" id="mainCanvas">
+
+              <div>
+                <img ng-src="{{ specificPokemon.sprites.front_default }}" alt="">
+                <p>{{ specificPokemon.name }}'s base stats are:</p>
+                <ul ng-repeat="pokeStat in specificPokemon.stats">
+                  <li>{{ pokeStat.stat.name }}: {{ pokeStat.base_stat }}</li>
+                </ul>
+
+                <p>{{ specificPokemon.name }} types are:</p>
+                <ul ng-repeat="pokeType in specificPokemon.types">
+                  <li>{{ pokeType.type.name }}</li>
+                </ul>
+
+                <p>{{ specificPokemon.name }} can be found at:</p>
+                <ul ng-repeat="location in pokeLocation">
+                  <li>Location: {{ location.area }} | Version: {{ location.version }}</li>
+                </ul>
+              </div>
+
+            </div>
+
+            <div class="label">
+              <div class="title">GAME BOY</div>
+              <div class="subtitle">
+                <span class="c">C</span><!--
+             --><span class="o1">O</span><!--
+             --><span class="l">L</span><!--
+             --><span class="o2">O</span><!--
+             --><span class="r">R</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="nintendo">Nintendo</div>
+
+          <div class="controls">
+            <div class="dpad">
+              <div class="up"><i class="fa fa-caret-up"></i></div>
+              <div class="right"><i class="fa fa-caret-right"></i></div>
+              <div class="down"><i class="fa fa-caret-down"></i></div>
+              <div class="left"><i class="fa fa-caret-left"></i></div>
+              <div class="middle"></div>
+            </div>
+            <div class="a-b">
+              <div class="b">B</div>
+              <div class="a">A</div>
+            </div>
+          </div>
+
+          <div class="start-select">
+            <div class="select">SELECT</div>
+            <div class="start">START</div>
+          </div>
+
+          <div class="speaker">
+            <div class="dot placeholder"></div>
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+            <div class="dot placeholder"></div>
+
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+
+            <div class="dot placeholder"></div>
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+            <div class="dot closed"></div>
+            <div class="dot open"></div>
+            <div class="dot placeholder"></div>
+          </div>
+
         </div>
+
       </div>
+
+
+
+
+
+
+
+
 
 
 

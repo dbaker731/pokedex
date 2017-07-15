@@ -41,6 +41,9 @@ angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
   this.getSpecific = function( url ) {
     return $http.get( url )
       .then( function( specificPokemon ){
+
+        specificPokemon.data.id = padDigits( specificPokemon.data.id, 3 );
+        console.log( specificPokemon.data.id );
         return specificPokemon.data;
       } );
   };
