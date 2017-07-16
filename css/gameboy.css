@@ -116,6 +116,7 @@
   margin-bottom: 15px;
   color: #000;
   overflow: scroll;
+  padding: 50px;
 }
 .gameboy .screen-area .label {
   position: relative;

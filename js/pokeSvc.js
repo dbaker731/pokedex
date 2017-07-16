@@ -43,7 +43,7 @@ angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
       .then( function( specificPokemon ){
 
         specificPokemon.data.id = padDigits( specificPokemon.data.id, 3 );
-        console.log( specificPokemon.data.id );
+        // console.log( specificPokemon.data.id );
         return specificPokemon.data;
       } );
   };
@@ -74,9 +74,11 @@ angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
         var encounterArea = pokemonLocation.data;
         for ( var location in encounterArea ) {
           for (var i = 0; i < encounterArea[location].version_details.length; i++) {
-            if ( encounterArea[location].version_details[i].version.name == 'blue' ||
-            encounterArea[location].version_details[i].version.name == 'red' ||
-            encounterArea[location].version_details[i].version.name == 'yellow' ) {
+            if (
+            // encounterArea[location].version_details[i].version.name == 'blue' ||
+            encounterArea[location].version_details[i].version.name == 'red'
+            // encounterArea[location].version_details[i].version.name == 'yellow'
+                ) {
               locations.push( {
                 version: encounterArea[location].version_details[i].version.name,
                 area: encounterArea[location].location_area.name,
@@ -92,6 +94,27 @@ angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
           } );
         }
         return locations;
+      } );
+  };
+
+  this.getPokedexDescription = function ( speciesUrl ){
+    return $http.get( speciesUrl )
+      .then( function( pokedexDescription ){
+        var pokedexText = {};
+        var pokedex = pokedexDescription.data.flavor_text_entries;
+        for ( var entry in pokedex) {
+          if (pokedex[entry].language.name === 'en' && pokedex[entry].version.name === 'red') {
+            pokedexText = {
+              text: pokedex[entry].flavor_text
+            };
+          }
+        }
+        if( !pokedexText ) {
+          pokdexText =  {
+            text: 'This pokemon is not in gen 1'
+          };
+        }
+        return pokedexText;
       } );
   };
 

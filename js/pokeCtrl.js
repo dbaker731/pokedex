@@ -5,6 +5,8 @@ angular.module( 'pokeApp' ).controller( 'pokeCtrl', function( $scope, pokeSvc, p
   $scope.specificPokemon = {};
   $scope.searchPokemon = pokemon.returnPokemon();
   $scope.pokeLocation = [];
+  $scope.pokedexText = '';
+  $scope.isPokemon = false;
 
   $scope.getPokemon = function() {
     pokeSvc.getPokemon( $scope.searchPokemon )
@@ -18,10 +20,16 @@ angular.module( 'pokeApp' ).controller( 'pokeCtrl', function( $scope, pokeSvc, p
     pokeSvc.getSpecific( url )
       .then( function( specificPokemon ) {
         $scope.specificPokemon = specificPokemon;
+        console.log( $scope.specificPokemon );
         $scope.pokemonName = specificPokemon.name;
+        $scope.isPokemon = true;
         pokeSvc.findLocation( specificPokemon.location_area_encounters )
           .then( function( pokemonLocation ) {
             $scope.pokeLocation = pokemonLocation;
+          } );
+        pokeSvc.getPokedexDescription( specificPokemon.species.url )
+          .then( function( pokedex ) {
+            $scope.pokedexText = pokedex.text;
           } );
       } );
   };
@@ -32,9 +40,14 @@ angular.module( 'pokeApp' ).controller( 'pokeCtrl', function( $scope, pokeSvc, p
       .then( function( specificPokemon ) {
         $scope.specificPokemon = specificPokemon;
         $scope.pokemonName = specificPokemon.name;
+        $scope.isPokemon = true;
         pokeSvc.findLocation( specificPokemon.location_area_encounters )
           .then( function( pokemonLocation ) {
             $scope.pokeLocation = pokemonLocation;
+          } );
+        pokeSvc.getPokedexDescription( specificPokemon.species.url )
+          .then( function( pokedex ) {
+            $scope.pokedexText = pokedex.text;
           } );
       } );
   };
@@ -44,9 +57,14 @@ angular.module( 'pokeApp' ).controller( 'pokeCtrl', function( $scope, pokeSvc, p
     pokeSvc.searchByName( $scope.searchPokemon, $scope.pokemonName )
     .then( function( specificPokemon ) {
       $scope.specificPokemon = specificPokemon;
+      $scope.isPokemon = true;
       pokeSvc.findLocation( specificPokemon.location_area_encounters )
         .then( function( pokemonLocation ) {
           $scope.pokeLocation = pokemonLocation;
+        } );
+      pokeSvc.getPokedexDescription( specificPokemon.species.url )
+        .then( function( pokedex ) {
+          $scope.pokedexText = pokedex.text;
         } );
     } );
   };
