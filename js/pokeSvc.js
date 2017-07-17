@@ -18,7 +18,7 @@ angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
 
 //this function returns 21 pokemonm per page
   this.getPokemon = function( pokemons ) {
-    return $http.get( baseUrl + 'pokemon/?limit=21' )
+    return $http.get( baseUrl + 'pokemon/?limit=60' )
       .then( function( pokemon ){
         nextPageUrl = pokemon.data.next;
         previousPageUrl = pokemon.data.previous;

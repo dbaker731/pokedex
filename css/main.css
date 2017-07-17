@@ -3,8 +3,10 @@
 }
 
 .pokemon-container {
+  height: 800px;
   padding: 0;
   background-color: #111;
+  overflow: scroll;
 }
 
 .pokemon {
