@@ -20,7 +20,6 @@ angular.module( 'pokeApp' ).controller( 'pokeCtrl', function( $scope, pokeSvc, p
     pokeSvc.getSpecific( url )
       .then( function( specificPokemon ) {
         $scope.specificPokemon = specificPokemon;
-        console.log( $scope.specificPokemon );
         $scope.pokemonName = specificPokemon.name;
         $scope.isPokemon = true;
         pokeSvc.findLocation( specificPokemon.location_area_encounters )
@@ -30,6 +29,7 @@ angular.module( 'pokeApp' ).controller( 'pokeCtrl', function( $scope, pokeSvc, p
         pokeSvc.getPokedexDescription( specificPokemon.species.url )
           .then( function( pokedex ) {
             $scope.pokedexText = pokedex.text;
+            console.log(pokedex);
           } );
       } );
   };
