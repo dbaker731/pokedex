@@ -18,7 +18,7 @@ angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
 
 //this function returns 21 pokemonm per page
   this.getPokemon = function( pokemons ) {
-    return $http.get( baseUrl + 'pokemon/?limit=60' )
+    return $http.get( baseUrl + 'pokemon/?limit=151' )
       .then( function( pokemon ){
         nextPageUrl = pokemon.data.next;
         previousPageUrl = pokemon.data.previous;
@@ -118,49 +118,49 @@ angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
       } );
   };
 
-  this.getNextPage = function( pokemons ){
-    return $http.get( nextPageUrl )
-    .then( function( pokemon ){
-      nextPageUrl = pokemon.data.next;
-      previousPageUrl = pokemon.data.previous;
-      pokemon = pokemon.data.results;
-      for (var i = 0; i < pokemon.length; i++) {
-        for (var j = 0; j < pokemons.length; j++) {
-          if ( pokemons[j].name === pokemon[i].name ) {
-            var number = padDigits( pokemons[j].id, 3 );
-            pokemon[i].number = number;
-            pokemon[i].imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + pokemons[j].id + '.png';
-          }
-        }
-        pokemon[i].name = pokemon[i].name.capitalize();
-      }
-      return pokemon;
-    });
-  };
+  // this.getNextPage = function( pokemons ){
+  //   return $http.get( nextPageUrl )
+  //   .then( function( pokemon ){
+  //     nextPageUrl = pokemon.data.next;
+  //     previousPageUrl = pokemon.data.previous;
+  //     pokemon = pokemon.data.results;
+  //     for (var i = 0; i < pokemon.length; i++) {
+  //       for (var j = 0; j < pokemons.length; j++) {
+  //         if ( pokemons[j].name === pokemon[i].name ) {
+  //           var number = padDigits( pokemons[j].id, 3 );
+  //           pokemon[i].number = number;
+  //           pokemon[i].imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + pokemons[j].id + '.png';
+  //         }
+  //       }
+  //       pokemon[i].name = pokemon[i].name.capitalize();
+  //     }
+  //     return pokemon;
+  //   });
+  // };
 
-  this.getPreviousPage = function( pokemons ){
-    if ( previousPageUrl ) {
-      return $http.get( previousPageUrl )
-      .then( function( pokemon ){
-        nextPageUrl = pokemon.data.next;
-        previousPageUrl = pokemon.data.previous;
-        pokemon = pokemon.data.results;
-        for (var i = 0; i < pokemon.length; i++) {
-          for (var j = 0; j < pokemons.length; j++) {
-            if ( pokemons[j].name === pokemon[i].name ) {
-              var number = padDigits( pokemons[j].id, 3 );
-              pokemon[i].number = number;
-              pokemon[i].imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + pokemons[j].id + '.png';
-            }
-          }
-          pokemon[i].name = pokemon[i].name.capitalize();
-        }
-        return pokemon;
-      });
-    } else {
-      alert( 'CAN\'\T GO BACK NERD' );
-    }
-  };
+  // this.getPreviousPage = function( pokemons ){
+  //   if ( previousPageUrl ) {
+  //     return $http.get( previousPageUrl )
+  //     .then( function( pokemon ){
+  //       nextPageUrl = pokemon.data.next;
+  //       previousPageUrl = pokemon.data.previous;
+  //       pokemon = pokemon.data.results;
+  //       for (var i = 0; i < pokemon.length; i++) {
+  //         for (var j = 0; j < pokemons.length; j++) {
+  //           if ( pokemons[j].name === pokemon[i].name ) {
+  //             var number = padDigits( pokemons[j].id, 3 );
+  //             pokemon[i].number = number;
+  //             pokemon[i].imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + pokemons[j].id + '.png';
+  //           }
+  //         }
+  //         pokemon[i].name = pokemon[i].name.capitalize();
+  //       }
+  //       return pokemon;
+  //     });
+  //   } else {
+  //     alert( 'CAN\'\T GO BACK NERD' );
+  //   }
+  // };
 
 
 } );

@@ -2,11 +2,19 @@
 
 }
 
+.search-container {
+  background-color: #D33417;
+}
+
 .pokemon-container {
-  height: 800px;
+  height: 825px;
   padding: 0;
-  background-color: #111;
+  background-color: #23252d;
   overflow: scroll;
+}
+
+.pokemon--padding {
+  height: 60px;
 }
 
 .pokemon {

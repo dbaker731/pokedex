@@ -12,6 +12,7 @@
 
     <div class="main-container">
 
+      <div class="search-container">
 
         <div>
           <p>Search by Name:</p>
@@ -19,14 +20,16 @@
           <button ng-click="getByName()"type="button" name="button">Search</button>
         </div>
 
-        <div>
+        <!-- <div>
           <p>Search by ID:</p>
           <input ng-model="pokemonId" type="text" name="" value="">
           <button ng-click="getById()" type="button" name="button">Test</button>
-        </div>
+        </div> -->
 
+      </div>
 
       <div class="pokemon-container col-md-3">
+          <div class="pokemon--padding"></div>
 
           <div class="pokemon" ng-repeat="poke in pokemon" ng-click="getSpecificPokemon( poke.url )">
             <span class="pokemon--number">{{ poke.number }}</span>
@@ -36,27 +39,10 @@
 
         <br>
 
-        <button class="pull-left" ng-click="previousPage()" type="button" name="button">Previous Page</button>
-        <button class="pull-right" ng-click="nextPage()" type="button" name="button">Next Page</button>
       </div>
 
       <div class="pokedex-container col-md-9">
-        <!-- <div class="pokedex__gameboy--shell">
-          <div class="pokedex__gameboy--outer-screen">
-            <div class="pokedex__info">
-              <p>{{ specificPokemon.name }}'s base stats are:</p>
-              <img ng-src="{{ specificPokemon.sprites.front_default }}" alt="">
-              <ul ng-repeat="pokeStat in specificPokemon.stats">
-                <li>{{ pokeStat.stat.name }}: {{ pokeStat.base_stat }}</li>
-              </ul>
 
-              <p>{{ specificPokemon.name }} can be found at:</p>
-              <ul ng-repeat="location in pokeLocation">
-                <li>Location: {{ location.area }} | Version: {{ location.version }}</li>
-              </ul>
-            </div>
-          </div>
-        </div> -->
         <div class="gameboy" id="GameBoy">
 
           <div class="screen-area">

@@ -69,18 +69,21 @@ angular.module( 'pokeApp' ).controller( 'pokeCtrl', function( $scope, pokeSvc, p
     } );
   };
 
-  $scope.nextPage = function(){
-    pokeSvc.getNextPage( $scope.searchPokemon )
-      .then( function( pokemon ){
-        $scope.pokemon = pokemon;
-      } );
-  };
-  $scope.previousPage = function(){
-    pokeSvc.getPreviousPage( $scope.searchPokemon )
-      .then( function( pokemon ){
-        $scope.pokemon = pokemon;
-      } );
-  };
+
+  
+  //
+  // $scope.nextPage = function(){
+  //   pokeSvc.getNextPage( $scope.searchPokemon )
+  //     .then( function( pokemon ){
+  //       $scope.pokemon = pokemon;
+  //     } );
+  // };
+  // $scope.previousPage = function(){
+  //   pokeSvc.getPreviousPage( $scope.searchPokemon )
+  //     .then( function( pokemon ){
+  //       $scope.pokemon = pokemon;
+  //     } );
+  // };
 
 
 } );
