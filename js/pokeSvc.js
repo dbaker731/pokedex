@@ -24,13 +24,39 @@ angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
         previousPageUrl = pokemon.data.previous;
         pokemon = pokemon.data.results;
         for (var i = 0; i < pokemon.length; i++) {
-          for (var j = 0; j < pokemons.length; j++) {
-            if ( pokemons[j].name === pokemon[i].name ) {
-                var number = padDigits( pokemons[j].id, 3 );
-                pokemon[i].number = number;
-                pokemon[i].imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + pokemons[j].id + '.png';
-            }
+
+
+          if ( pokemon[i].url.length === 36 ) {
+            var test = pokemon[i].url.slice( 34, 35 );
+            var number = padDigits( pokemon[i].url.slice( 34, 35 ), 3 );
+            pokemon[i].number = number;
+            pokemon[i].imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + test + '.png';
+          } else if ( pokemon[i].url.length === 37 ) {
+            var test2 = pokemon[i].url.slice( 34, 36 );
+            var number2 = padDigits( pokemon[i].url.slice( 34, 36 ), 3 );
+            pokemon[i].number = number2;
+            pokemon[i].imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + test2 + '.png';
+          } else if ( pokemon[i].url.length === 38 ) {
+            var test3 = pokemon[i].url.slice( 34, 37 );
+            var number3 = padDigits( pokemon[i].url.slice( 34, 37 ), 3 );
+            pokemon[i].number = number3;
+            pokemon[i].imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + test3 + '.png';
           }
+
+
+          // console.log( pokemon[i].url.length  );
+          // console.log( pokemon[i].url.slice( 34, 37 ) );
+
+          // for (var j = 0; j < pokemons.length; j++) {
+          //   if ( pokemons[j].name === pokemon[i].name ) {
+          //       var number = padDigits( pokemons[j].id, 3 );
+          //       pokemon[i].number = number;
+          //       pokemon[i].imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + pokemons[j].id + '.png';
+          //   }
+          // }
+
+
+
           pokemon[i].name = pokemon[i].name.capitalize();
         }
         return pokemon;
