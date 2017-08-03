@@ -14,9 +14,10 @@
 
       <div class="search-container">
 
-        <div>
-          <p>Search by Name:</p>
-          <input ng-model="pokemonName" type="text" name="" value="">
+        <div class="col-md-3 red-box"></div>
+
+        <div class="col-md-9 search">
+          <input ng-model="pokemonName" type="text" placeholder="Enter Pokemon Name">
           <button ng-click="getByName()"type="button" name="button">Search</button>
         </div>
 

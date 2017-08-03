@@ -3,7 +3,18 @@
 }
 
 .search-container {
+  height: 60px;
+}
+
+.red-box {
   background-color: #D33417;
+  height: 60px;
+  border-bottom-right-radius: 10px;
+}
+
+.search {
+  background-color: #23252d;
+  height: 60px;
 }
 
 .pokemon-container {
