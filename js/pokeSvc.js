@@ -141,10 +141,10 @@ angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
       .then( function( specificPokemon ){
         specificPokemon.data.id = padDigits( specificPokemon.data.id, 3 );
         pokemonInfo = specificPokemon.data;
-        ready();
+        checkSpecificPokemon();
       } );
 
-      function ready() {
+      function checkSpecificPokemon() {
         if( pokemonInfo ) {
 
           $http.get( pokemonInfo.species.url )
@@ -164,7 +164,7 @@ angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
                 };
               }
               pokemonPokedex = pokedexText;
-              ready2();
+              checkPokemonInfo();
             } );
 
             $http.get( 'https://pokeapi.co' + pokemonInfo.location_area_encounters )
@@ -174,9 +174,7 @@ angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
                 for ( var location in encounterArea ) {
                   for (var i = 0; i < encounterArea[location].version_details.length; i++) {
                     if (
-                    // encounterArea[location].version_details[i].version.name == 'blue' ||
-                    encounterArea[location].version_details[i].version.name == 'red'
-                    // encounterArea[location].version_details[i].version.name == 'yellow'
+                      encounterArea[location].version_details[i].version.name == 'red'
                         ) {
                       locations.push( {
                         version: encounterArea[location].version_details[i].version.name,
@@ -193,11 +191,11 @@ angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
                   } );
                 }
                 pokeLocation = locations;
-                ready2();
+                checkPokemonInfo();
               } );
         }
       }
-      function ready2( ) {
+      function checkPokemonInfo () {
         if (pokemonPokedex && pokeLocation) {
           deferer.resolve( { info: pokemonInfo, pokedex: pokemonPokedex, location: pokeLocation } );
         }
