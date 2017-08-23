@@ -42,21 +42,6 @@ angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
             pokemon[i].number = number3;
             pokemon[i].imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + test3 + '.png';
           }
-
-
-          // console.log( pokemon[i].url.length  );
-          // console.log( pokemon[i].url.slice( 34, 37 ) );
-
-          // for (var j = 0; j < pokemons.length; j++) {
-          //   if ( pokemons[j].name === pokemon[i].name ) {
-          //       var number = padDigits( pokemons[j].id, 3 );
-          //       pokemon[i].number = number;
-          //       pokemon[i].imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + pokemons[j].id + '.png';
-          //   }
-          // }
-
-
-
           pokemon[i].name = pokemon[i].name.capitalize();
         }
         return pokemon;
@@ -142,6 +127,83 @@ angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
         }
         return pokedexText;
       } );
+  };
+
+
+  this.getSpecificInfo = function( url ) {
+
+    var deferer = $q.defer();
+    var pokemonInfo;
+    var pokemonPokedex;
+    var pokeLocation;
+
+    $http.get( url )
+      .then( function( specificPokemon ){
+        specificPokemon.data.id = padDigits( specificPokemon.data.id, 3 );
+        pokemonInfo = specificPokemon.data;
+        ready();
+      } );
+
+      function ready() {
+        if( pokemonInfo ) {
+
+          $http.get( pokemonInfo.species.url )
+            .then( function( pokedexDescription ){
+              var pokedexText = {};
+              var pokedex = pokedexDescription.data.flavor_text_entries;
+              for ( var entry in pokedex) {
+                if (pokedex[entry].language.name === 'en' && pokedex[entry].version.name === 'red') {
+                  pokedexText = {
+                    text: pokedex[entry].flavor_text
+                  };
+                }
+              }
+              if( !pokedexText ) {
+                pokdexText =  {
+                  text: 'This pokemon is not in gen 1'
+                };
+              }
+              pokemonPokedex = pokedexText;
+              ready2();
+            } );
+
+            $http.get( 'https://pokeapi.co' + pokemonInfo.location_area_encounters )
+              .then( function( pokemonLocation ){
+                var locations = [];
+                var encounterArea = pokemonLocation.data;
+                for ( var location in encounterArea ) {
+                  for (var i = 0; i < encounterArea[location].version_details.length; i++) {
+                    if (
+                    // encounterArea[location].version_details[i].version.name == 'blue' ||
+                    encounterArea[location].version_details[i].version.name == 'red'
+                    // encounterArea[location].version_details[i].version.name == 'yellow'
+                        ) {
+                      locations.push( {
+                        version: encounterArea[location].version_details[i].version.name,
+                        area: encounterArea[location].location_area.name,
+                        areaUrl: encounterArea[location].location_area.url
+                      } );
+                    }
+                  }
+                }
+                if ( !locations.length ) {
+                  locations.push( {
+                    version: 'red, blue, or yellow',
+                    area: 'This pokemon is unavailable to catch in the wild in'
+                  } );
+                }
+                pokeLocation = locations;
+                ready2();
+              } );
+        }
+      }
+      function ready2( ) {
+        if (pokemonPokedex && pokeLocation) {
+          deferer.resolve( { info: pokemonInfo, pokedex: pokemonPokedex, location: pokeLocation } );
+        }
+
+      }
+    return deferer.promise;
   };
 
   // this.getNextPage = function( pokemons ){
