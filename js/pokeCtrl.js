@@ -4,7 +4,7 @@ angular.module( 'pokeApp' ).controller( 'pokeCtrl', function( $scope, pokeSvc, p
   $scope.pokemon = [];
   $scope.specificPokemon = {};
   $scope.searchPokemon = pokemon.returnPokemon();
-  $scope.pokeLocation = [];
+  $scope.pokeLocation = {};
   $scope.pokedexText = '';
   $scope.isPokemon = false;
 
@@ -16,7 +16,6 @@ angular.module( 'pokeApp' ).controller( 'pokeCtrl', function( $scope, pokeSvc, p
   }();
 
   $scope.getSpecificPokemon = function( url ) {
-    $scope.pokeLocation = {};
      pokeSvc.getSpecificInfo( url )
       .then( function( specificPokemon ){
             $scope.specificPokemon = specificPokemon.info;
@@ -27,58 +26,15 @@ angular.module( 'pokeApp' ).controller( 'pokeCtrl', function( $scope, pokeSvc, p
       } );
   };
 
-
-
-  $scope.getById = function() {
-    $scope.pokeLocation = {};
-    pokeSvc.getSpecificId( $scope.pokemonId )
-      .then( function( specificPokemon ) {
-        $scope.specificPokemon = specificPokemon;
-        $scope.pokemonName = specificPokemon.name;
-        $scope.isPokemon = true;
-        pokeSvc.findLocation( specificPokemon.location_area_encounters )
-          .then( function( pokemonLocation ) {
-            $scope.pokeLocation = pokemonLocation;
-          } );
-        pokeSvc.getPokedexDescription( specificPokemon.species.url )
-          .then( function( pokedex ) {
-            $scope.pokedexText = pokedex.text;
-          } );
-      } );
-  };
-
   $scope.getByName = function() {
-    $scope.pokeLocation = {};
-    pokeSvc.searchByName( $scope.searchPokemon, $scope.pokemonName )
-    .then( function( specificPokemon ) {
-      $scope.specificPokemon = specificPokemon;
-      $scope.isPokemon = true;
-      pokeSvc.findLocation( specificPokemon.location_area_encounters )
-        .then( function( pokemonLocation ) {
-          $scope.pokeLocation = pokemonLocation;
-        } );
-      pokeSvc.getPokedexDescription( specificPokemon.species.url )
-        .then( function( pokedex ) {
-          $scope.pokedexText = pokedex.text;
-        } );
+    pokeSvc.getSpecificInfo( pokeSvc.searchByName( $scope.searchPokemon, $scope.pokemonName ) )
+    .then( function( specificPokemon ){
+          $scope.specificPokemon = specificPokemon.info;
+          $scope.pokemonName = specificPokemon.info.name;
+          $scope.isPokemon = true;
+          $scope.pokedexText = specificPokemon.pokedex.text;
+          $scope.pokeLocation = specificPokemon.location;
     } );
   };
-
-
-
-  //
-  // $scope.nextPage = function(){
-  //   pokeSvc.getNextPage( $scope.searchPokemon )
-  //     .then( function( pokemon ){
-  //       $scope.pokemon = pokemon;
-  //     } );
-  // };
-  // $scope.previousPage = function(){
-  //   pokeSvc.getPreviousPage( $scope.searchPokemon )
-  //     .then( function( pokemon ){
-  //       $scope.pokemon = pokemon;
-  //     } );
-  // };
-
 
 } );
