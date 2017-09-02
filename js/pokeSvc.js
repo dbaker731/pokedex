@@ -14,7 +14,7 @@ angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
 
 //starting the service
 
-//this function returns 21 pokemonm per page
+//this function returns 151 pokemon
   this.getPokemon = function( pokemons ) {
     return $http.get( baseUrl + 'pokemon/?limit=151' )
       .then( function( pokemon ){
@@ -22,16 +22,19 @@ angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
         for (var i = 0; i < pokemon.length; i++) {
           if ( pokemon[i].url.length === 36 ) {
             var test = pokemon[i].url.slice( 34, 35 );
+            pokemon[i].id = parseInt(test);
             var number = padDigits( pokemon[i].url.slice( 34, 35 ), 3 );
             pokemon[i].number = number;
             pokemon[i].imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + test + '.png';
           } else if ( pokemon[i].url.length === 37 ) {
             var test2 = pokemon[i].url.slice( 34, 36 );
+            pokemon[i].id = parseInt(test2);
             var number2 = padDigits( pokemon[i].url.slice( 34, 36 ), 3 );
             pokemon[i].number = number2;
             pokemon[i].imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + test2 + '.png';
           } else if ( pokemon[i].url.length === 38 ) {
             var test3 = pokemon[i].url.slice( 34, 37 );
+            pokemon[i].id = parseInt(test3);
             var number3 = padDigits( pokemon[i].url.slice( 34, 37 ), 3 );
             pokemon[i].number = number3;
             pokemon[i].imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + test3 + '.png';
@@ -41,7 +44,6 @@ angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
         return pokemon;
       } );
   };
-
 
   this.searchByName = function( pokemons, name ) {
     for (var i = 0; i < pokemons.length; i++) {
@@ -60,7 +62,7 @@ angular.module( 'pokeApp' ).service( 'pokeSvc', function( $http, $q ) {
 
     $http.get( url )
       .then( function( specificPokemon ){
-        specificPokemon.data.id = padDigits( specificPokemon.data.id, 3 );
+        specificPokemon.data.id_dex = padDigits( specificPokemon.data.id, 3 );
         pokemonInfo = specificPokemon.data;
         checkSpecificPokemon();
       } );
