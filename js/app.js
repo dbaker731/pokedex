@@ -4,7 +4,7 @@ angular.module( 'pokeApp', [ 'ui.router' ] )
 
         $stateProvider
             .state( 'home', {
-                templateUrl: '/pokedex.html',
+                templateUrl: './pokedex.html',
                 url: '/pokemon/:id',
                 controller: 'pokedexCtrl'
             } );
